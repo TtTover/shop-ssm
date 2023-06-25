@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gec.mapper.CategoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.gec.bean.Category">
+            <id property="cid" column="cid" jdbcType="VARCHAR"/>
+            <result property="cname" column="cname" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        cid,cname
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from category
+        where  cid = #{cid,jdbcType=VARCHAR} 
+    </select>
+
+    <select id="findAllProduct" parameterType="com.gec.bean.Product" resultType="com.gec.bean.Product">
+        select * from product where cid = #{cid}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from category
+        where  cid = #{cid,jdbcType=VARCHAR} 
+    </delete>
+    <insert id="insert" keyColumn="cid" keyProperty="cid" parameterType="com.gec.bean.Category" useGeneratedKeys="true">
+        insert into category
+        ( cid,cname)
+        values (#{cid,jdbcType=VARCHAR},#{cname,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="cid" keyProperty="cid" parameterType="com.gec.bean.Category" useGeneratedKeys="true">
+        insert into category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="cid != null">cid,</if>
+                <if test="cname != null">cname,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="cid != null">#{cid,jdbcType=VARCHAR},</if>
+                <if test="cname != null">#{cname,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.gec.bean.Category">
+        update category
+        <set>
+                <if test="cname != null">
+                    cname = #{cname,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   cid = #{cid,jdbcType=VARCHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.gec.bean.Category">
+        update category
+        set 
+            cname =  #{cname,jdbcType=VARCHAR}
+        where   cid = #{cid,jdbcType=VARCHAR} 
+    </update>
+</mapper>
