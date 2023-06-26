@@ -1,7 +1,9 @@
 package com.gec.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 
@@ -48,6 +50,17 @@ public class Orders implements Serializable {
      */
     private String uid;
 
+    //一个订单有多个订单明细 使用集合list容器来存放多个订单明细数据
+    private List<Orderitem> orderitems = new ArrayList<>();
+
+    public List<Orderitem> getOrderitems() {
+        return orderitems;
+    }
+
+    public void setOrderitems(List<Orderitem> orderitems) {
+        this.orderitems = orderitems;
+    }
+
     /**
      * 
      */
@@ -84,9 +97,15 @@ public class Orders implements Serializable {
     }
 
     /**
-     * 
+     *
      */
     public Double getTotal() {
+        //遍历集合orderitems订单中的价格数据累加起来
+        double money = 0;
+        for (Orderitem orderitem: orderitems) {
+            money = money + orderitem.getSubtotal();
+        }
+        total = money;
         return total;
     }
 

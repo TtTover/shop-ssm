@@ -18,7 +18,7 @@ public class Orderitem implements Serializable {
     private Integer count;
 
     /**
-     * 
+     * 每个订单明细的总价
      */
     private Double subtotal;
 
@@ -31,6 +31,17 @@ public class Orderitem implements Serializable {
      * 
      */
     private String oid;
+
+    //一个订单明细对于一个商品
+    private Product product;
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     private static final long serialVersionUID = 1L;
 

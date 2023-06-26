@@ -44,13 +44,13 @@ body {
 							<th>数量</th>
 							<th>小计</th>
 						</tr>
-						<c:forEach items="${order.orderItems}" var="orderItem">
+						<c:forEach items="${order.orderitems}" var="orderItem">
 						<tr class="active">
 							<td width="60" width="40%"><input type="hidden" name="id"
 								value="22"> <img src="${orderItem.product.pimage }" width="70"
 								height="60"></td>
 							<td width="30%"><a target="_blank"> ${orderItem.product.pname }</a></td>
-							<td width="20%">￥${orderItem.product.shop_price }</td>
+							<td width="20%">￥${orderItem.product.shopPrice }</td>
 							<td width="10%">${orderItem.count }</td>
 							<td width="15%"><span class="subtotal">￥${orderItem.subtotal }</span></td>
 						</tr>
@@ -71,32 +71,28 @@ body {
 				style="margin-top: 5px; margin-left: 250px;">
 				<input type="hidden" name="oid" value="${order.oid}">
 				<div class="form-group">
-					<label for="username" class="col-sm-1 control-label">地&nbsp;&nbsp;&nbsp;址</label>
+					<label class="col-sm-1 control-label">地&nbsp;&nbsp;&nbsp;址</label>
 					<div class="col-sm-5">
 						<input type="text" class="form-control" name="address"
 							placeholder="请输入收货地址" value="${order.address}">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputPassword3" class="col-sm-1 control-label">收货人</label>
+					<label class="col-sm-1 control-label">收货人</label>
 					<div class="col-sm-5">
 						<input type="text" class="form-control" name="name"
 							placeholder="请输收货人" value="${order.name}">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="confirmpwd" class="col-sm-1 control-label">电&nbsp;&nbsp;&nbsp;话</label>
+					<label class="col-sm-1 control-label">电&nbsp;&nbsp;&nbsp;话</label>
 					<div class="col-sm-5">
 						<input type="text" class="form-control" name="telephone"
 							placeholder="请输入联系方式" value="${order.telephone}">
 					</div>
 				</div>
 				<input type="submit" value="确定订单" style="margin-left:150px">
-			    &nbsp;&nbsp;&nbsp;<a href="DeleteOrderServlet?oid=${order.oid}">删除订单</a>
-			    
-			    &nbsp;&nbsp;&nbsp;<input class="button_ok" type="button" onclick="history.go(-1)" value="返回"/>
-						
-			
+			    <input class="button_ok" type="button" onclick="history.go(-1)" value="返回"/>
 			</form>
 
 			<hr />

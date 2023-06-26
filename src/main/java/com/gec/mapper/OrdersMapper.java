@@ -10,13 +10,13 @@ import com.gec.bean.Orders;
 */
 public interface OrdersMapper {
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Orders record);
 
     int insertSelective(Orders record);
 
-    Orders selectByPrimaryKey(Long id);
+    Orders selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(Orders record);
 
