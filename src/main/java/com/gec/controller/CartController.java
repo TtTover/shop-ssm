@@ -28,13 +28,16 @@ public class CartController {
     public String addCart(String pid,int buyNum){
         //获取session中的购物车信息
         Cart cart = (Cart) session.getAttribute("cart");
+
         //如果session中没有购物车就创建一个新的购物车对象
         if(cart==null){
             cart=new Cart();
         }
+
         //要将商品加入购物车 判断购物车中是否已经存在这个商品了
         //拿购物车明细出来看看里面是否存在重复的商品数据
         Map<String, CartItem> cartItems = cart.getCartItems();
+
         //遍历购物车中的数据 判断一下是否存在这个商品
         if (cartItems.get(pid)!=null){
             //如果商品的编号能够在购物车明细中获取商品 说明这个商品已经存在购物车里面了 直接修改数据就行
@@ -61,31 +64,47 @@ public class CartController {
             //将这个商品对象明细容器加入到购物车对象中
             cart.setCartItems(cartItems);
         }
+
         //更新session中购物车的数据
        session.setAttribute("cart",cart);
+
         //去到购物车详情的页面cart.jsp 展示购物车中的信息
         return "cart";
     }
 
     @RequestMapping("/updateBuyNum")
     public String updateBuyNum(String pid,int buyNum){
-        //获取session中的购物车信息
-        Cart cart = (Cart) session.getAttribute("cart");
-        //如果session中没有购物车就创建一个新的购物车对象
-        if(cart==null){
-            cart=new Cart();
+        //修改购物车中的商品信息 数据在session中
+        Cart cart1 = (Cart) session.getAttribute("cart");
+
+        //取出session中的数据 进行修改
+        //取出购物车中的商品明细
+        Map<String, CartItem> cartItems1 = cart1.getCartItems();
+
+        //根据商品编号获取对应的商品
+        CartItem cartItem1 = cartItems1.get(pid);
+
+        if (buyNum==0){
+            //如果这个buyNum==0 移除对应的商品
+            cartItems1.remove(pid);
+        }else {
+            //如果修改的数量不为0 直接修改
+            cartItem1.setBuyNum(buyNum);
+            cartItems1.put(pid,cartItem1);
         }
-        //要将商品加入购物车 判断购物车中是否已经存在这个商品了
-        //拿购物车明细出来看看里面是否存在重复的商品数据
-        Map<String, CartItem> cartItems = cart.getCartItems();
-        CartItem cartItem = cartItems.get(pid);
-        cartItem.setBuyNum(buyNum);
-        cartItems.put(pid,cartItem);
-        //将这个购物车商品明细容器加入到购物车对象中
-        cart.setCartItems(cartItems);
-        //更新session中购物车的数据
-        session.setAttribute("cart",cart);
-        //去到购物车详情的页面cart.jsp 展示购物车中的信息
+
+        //更新购物车中的商品明细数据
+        cart1.setCartItems(cartItems1);
+
+        //更新购物车中的数据
+        session.setAttribute("cart",cart1);
+
+        if (cartItems1.isEmpty()){
+            //如果购物车中没有商品 那么直接清空购物车
+            session.removeAttribute("cart");
+        }
+
+        //去到购物车页面
         return "cart";
     }
 
