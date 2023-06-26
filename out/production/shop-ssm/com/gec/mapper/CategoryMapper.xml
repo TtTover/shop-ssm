@@ -20,10 +20,6 @@
         where  cid = #{cid,jdbcType=VARCHAR} 
     </select>
 
-    <select id="findAllProduct" parameterType="com.gec.bean.Product" resultType="com.gec.bean.Product">
-        select * from product where cid = #{cid}
-    </select>
-
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from category
         where  cid = #{cid,jdbcType=VARCHAR} 

@@ -67,7 +67,7 @@ body {
 
 		<div>
 			<hr />
-			<form class="form-horizontal" action="QueDingOrderServlet"
+			<form class="form-horizontal" action="creatOrder"
 				style="margin-top: 5px; margin-left: 250px;">
 				<input type="hidden" name="oid" value="${order.oid}">
 				<div class="form-group">

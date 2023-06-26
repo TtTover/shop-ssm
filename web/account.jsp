@@ -44,13 +44,13 @@ body {
 							<th>数量</th>
 							<th>小计</th>
 						</tr>
-						<c:forEach items="${order.orderItems}" var="orderItem">
+						<c:forEach items="${order.orderitems}" var="orderItem">
 						<tr class="active">
 							<td width="60" width="40%"><input type="hidden" name="id"
 								value="22"> <img src="${orderItem.product.pimage }" width="70"
 								height="60"></td>
 							<td width="30%"><a target="_blank"> ${orderItem.product.pname }</a></td>
-							<td width="20%">￥${orderItem.product.shop_price }</td>
+							<td width="20%">￥${orderItem.product.shopPrice }</td>
 							<td width="10%">${orderItem.count }</td>
 							<td width="15%"><span class="subtotal">￥${orderItem.subtotal }</span></td>
 						</tr>

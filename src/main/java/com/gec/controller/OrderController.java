@@ -1,6 +1,7 @@
 package com.gec.controller;
 
 import com.gec.bean.*;
+import com.gec.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,9 @@ public class OrderController {
     @Autowired
     HttpSession session;
 
+    @Autowired
+    OrderService orderService;
+
     /**
      * 订单预览功能 只需要将购物车中的数据去出来放到订单页面预览
      * 不需要将数据存放到数据库
@@ -24,11 +28,21 @@ public class OrderController {
      */
     @RequestMapping("/showOrder")
     public String showOrder(Model model){
+        Orders orders = getOrders();
+
+        if (orders == null) return "redirect:login.jsp";
+
+        //通过model模型对象将数据带到订单order_info.jsp展示订单的页面去
+        model.addAttribute("order",orders);
+        return "order_info";
+    }
+
+    private Orders getOrders() {
         //展示订单要用到用户的收货信息 所以要在登陆的情况下才能访问这个方法
         User user = (User) session.getAttribute("user");
         if (user == null){
             //如果用户信息为空 说明用户没有登陆 重定向到登陆页面让用户登陆
-            return "redirect:login.jsp";
+            return null;
         }
 
         //取出session中的购物车数据
@@ -73,8 +87,25 @@ public class OrderController {
             //更新订单明细的数据
             orders.setOrderitems(orderitems);
         }
-        //通过model模型对象将数据带到订单order_info.jsp展示订单的页面去
-        model.addAttribute("order",orders);
-        return "order_info";
+        return orders;
     }
+
+    @RequestMapping("/creatOrder")
+    public String createOrder(Model model,Orders form){
+        //调用取出购物车中的商品信息 然后将商品信息放到购物车对象中的方法
+        Orders orders = getOrders();
+        if (orders == null){
+            return "redirect:login.jsp";
+        }
+        //用户有可能对订单信息进行修改 修改了收货地址 联系电话 联系人
+        orders.setAddress(form.getAddress());
+        orders.setTelephone(form.getTelephone());
+        orders.setName(form.getName());
+        //编写业务逻辑代码将购物车中的数据添加到数据库中
+        boolean b = orderService.addOrders(orders);
+        //添加完毕以后 去到account.jsp这个结算页面
+        model.addAttribute("order",orders);
+        return "account";
+    }
+
 }

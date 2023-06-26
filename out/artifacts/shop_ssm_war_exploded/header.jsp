@@ -44,17 +44,17 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 				  <c:if test="${empty cid }">
-					<li class="active"><a href="ProductListServlet?currentPage=1">全部商品<span class="sr-only">(current)</span></a></li>
+					<li class="active"><a href="productList?currentPage=1">全部商品<span class="sr-only">(current)</span></a></li>
 				  </c:if>
 				  <c:if test="${!empty cid }">
-					<li><a href="ProductListServlet?currentPage=1">全部商品<span class="sr-only">(current)</span></a></li>
+					<li><a href="productList?currentPage=1">全部商品<span class="sr-only">(current)</span></a></li>
 				  </c:if>
 				<c:forEach items="${categoryList}" var="category">
 					<c:if test="${cid==category.cid}">
-					   <li class="active"><a href="ProductListServlet?currentPage=1&cid=${category.cid}">${category.cname }</a></li>
+					   <li class="active"><a href="productList?currentPage=1&cid=${category.cid}">${category.cname }</a></li>
 				    </c:if>
 				    <c:if test="${cid!=category.cid}">
-					   <li><a href="ProductListServlet?currentPage=1&cid=${category.cid}">${category.cname }</a></li>
+					   <li><a href="productList?currentPage=1&cid=${category.cid}">${category.cname }</a></li>
 				    </c:if>
 				</c:forEach>
 				</ul>
