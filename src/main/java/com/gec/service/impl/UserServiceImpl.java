@@ -24,4 +24,9 @@ public class UserServiceImpl implements UserService {
         User select = userMapper.selectByUserNameAndPassword(user);
         return select;
     }
+
+    @Override
+    public User findUserById(String uid) {
+        return userMapper.selectByPrimaryKey(uid);
+    }
 }

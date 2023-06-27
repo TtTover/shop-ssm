@@ -128,4 +128,8 @@
     <select id="findNewProduct" resultMap="BaseResultMap">
         select * from product order by pdate desc limit 12
     </select>
+
+    <select id="productList" resultMap="BaseResultMap">
+        select * from product
+    </select>
 </mapper>

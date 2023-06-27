@@ -17,14 +17,18 @@
         pid,oid
     </sql>
 
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from orderitem
         where  itemid = #{itemid,jdbcType=VARCHAR} 
     </select>
+    
+    <select id="findAllOrderByOidOrderitems" parameterType="string" resultMap="BaseResultMap">
+        select * from orderitem where oid = #{value}
+    </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from orderitem
         where  itemid = #{itemid,jdbcType=VARCHAR} 
     </delete>

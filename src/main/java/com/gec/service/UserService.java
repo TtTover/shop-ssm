@@ -10,4 +10,11 @@ public interface UserService {
      * @return
      */
     User doLogin(String username,String password);
+
+    /**
+     * 按编号查询用户信息
+     * @param uid
+     * @return
+     */
+    User findUserById(String uid);
 }

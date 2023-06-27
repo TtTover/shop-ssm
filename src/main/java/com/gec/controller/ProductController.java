@@ -58,4 +58,13 @@ public class ProductController {
         modelAndView.setViewName("product_info");
         return modelAndView;
     }
+
+    @RequestMapping("/productList")
+    public ModelAndView productList(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<Product> productList = productService.productList();
+        modelAndView.addObject("productList",productList);
+        modelAndView.setViewName("product_list");
+        return modelAndView;
+    }
 }

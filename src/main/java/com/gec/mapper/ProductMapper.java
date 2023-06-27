@@ -1,6 +1,7 @@
 package com.gec.mapper;
 
 import com.gec.bean.Product;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
 */
 public interface ProductMapper {
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Product record);
 
@@ -35,4 +36,6 @@ public interface ProductMapper {
      * @return
      */
     List<Product> findNewProduct();
+
+    List<Product> productList();
 }

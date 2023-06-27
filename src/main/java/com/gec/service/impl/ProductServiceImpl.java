@@ -34,4 +34,7 @@ public class ProductServiceImpl implements ProductService {
         Product product = productMapper.selectByPrimaryKey(pid);
         return product;
     }
+
+    @Override
+    public List<Product> productList() {return productMapper.productList();}
 }

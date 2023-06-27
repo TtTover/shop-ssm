@@ -61,14 +61,14 @@ body {
 		
   <c:forEach items="${productList}" var="product">
 		<div class="col-md-2" style="height:250px;text-align:center">
-			<a href="ProductInfoServlet?pid=${product.pid}"> <img src="${product.pimage}"
+			<a href="getById?pid=${product.pid}"> <img src="${product.pimage}"
 				width="170" height="170" style="display: inline-block;">
 			</a>
 			<p>
-				<a href="ProductInfoServlet?pid=${product.pid}" style='color: green'>${product.pname}</a>
+				<a href="getById?pid=${product.pid}" style='color: green'>${product.pname}</a>
 			</p>
 			<p>
-				<font color="#FF0000">商城价：&yen;${product.shop_price}</font>
+				<font color="#FF0000">商城价：&yen;${product.shopPrice}</font>
 			</p>
 		</div>
    </c:forEach>

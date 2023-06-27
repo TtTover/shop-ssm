@@ -1,6 +1,9 @@
 package com.gec.mapper;
 
 import com.gec.bean.Orderitem;
+import com.gec.bean.Orders;
+
+import java.util.List;
 
 /**
 * @author 17740
@@ -22,4 +25,5 @@ public interface OrderitemMapper {
 
     int updateByPrimaryKey(Orderitem record);
 
+    List<Orderitem> findAllOrderByOidOrderitems(String oid);
 }

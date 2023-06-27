@@ -82,7 +82,7 @@ body {
 					</div>
 				
 			<hr />
-			<form action="AccountServlet" style="margin-top: 5px;text-align:center">
+			<form action="toAccount" style="margin-top: 5px;text-align:center">
 			<input type="hidden" name="oid" value="${order.oid}">
 				<div>
 					<label >付款</label>

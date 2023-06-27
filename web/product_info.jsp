@@ -34,10 +34,10 @@ body {
 			<div
 				style="border: 1px solid #e4e4e4; width: 930px; margin-bottom: 10px; margin: 0 auto; padding: 10px; margin-bottom: 10px;">
 				<ol class="breadcrumb">
-				<li><a href="Index">首页</a></li>
+				<li><a href="home">首页</a></li>
 				<c:forEach items="${categoryList}" var="category">
 				<c:if test="${product.cid==category.cid}"> 
-			     	<li><a href="ProductListServlet?currentPage=1&cid=${product.cid}">${category.cname}</a></li>
+			     	<li><a href="productList?currentPage=1&cid=${product.cid}">${category.cname}</a></li>
 			     </c:if>
 				</c:forEach>
 				<li><a>${product.pname}</a></li>
