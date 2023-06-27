@@ -21,7 +21,7 @@
 			  <li><a href="ZhuxiaoServlet">注销</a></li>
 			</c:if>
 			<li><a href="cart.jsp">购物车</a></li>
-			<li><a href="OrderListServlet?currentPage=1">我的订单</a></li>
+			<li><a href="ordersList?currentPage=1">我的订单</a></li>
 		</ol>
 	</div>
 </div>

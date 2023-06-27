@@ -49,20 +49,20 @@ body {
 							<th>数量</th>
 							<th>小计</th>
 						</tr>
-						<c:forEach items="${order.orderItems}" var="orderItem" >
+						<c:forEach items="${order.orderitems}" var="orderItem" >
 						<tr class="active">
 							<td width="60" width="40%"><input type="hidden" name="id"
 								value="22"> <img src="${orderItem.product.pimage}" width="70"
 								height="60"></td>
 							<td width="30%"><a target="_blank">${orderItem.product.pname}</a></td>
-							<td width="15%">￥${orderItem.product.shop_price}</td>
+							<td width="15%">￥${orderItem.product.shopPrice}</td>
 							<td width="15%">${orderItem.count}</td>
 							<td width="15%"><span class="subtotal">￥${orderItem.subtotal}</span></td>
 						</tr>
 						</c:forEach>
 						<tr >
 						  <td>合计:&nbsp;&nbsp;<font style="color:red">￥${order.total}</font></td>
-						  <td>${order.orderTime}</td>
+						  <td>${order.ordertime}</td>
 						  <td>操作</td>
 						  <td>
 						    <a href="ManageOrderServlet?state=${order.state}&oid=${order.oid}">
@@ -87,22 +87,22 @@ body {
 					aria-hidden="true">&laquo;</span></a></li>
 		    </c:if>
 		    <c:if test="${currentPage!=1}">
-			  <li><a href="OrderListServlet?currentPage=${currentPage-1}" aria-label="Previous"><span
+			  <li><a href="toOrderList?currentPage=${currentPage-1}" aria-label="Previous"><span
 					aria-hidden="true">&laquo;</span></a></li>
 		    </c:if>
 			
 			
 			<c:forEach begin="1" end="${totalPage}" var="pageNum">
 			   <c:if test="${currentPage==pageNum}">
-			      <li class="active"><a href="OrderListServlet?currentPage=${pageNum}">${pageNum }</a></li>
+			      <li class="active"><a href="toOrderList?currentPage=${pageNum}">${pageNum }</a></li>
 			   </c:if>
 			   <c:if test="${currentPage!=pageNum }">
-			      <li><a href="OrderListServlet?currentPage=${pageNum}">${pageNum}</a></li>
+			      <li><a href="toOrderList?currentPage=${pageNum}">${pageNum}</a></li>
 			   </c:if>
 			</c:forEach>
 			
 			<c:if test="${currentPage!=totalPage}">
-			    <li><a href="OrderListServlet?currentPage=${currentPage+1}" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+			    <li><a href="toOrderList?currentPage=${currentPage+1}" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 			         </a>
 			    </li>
 			</c:if>

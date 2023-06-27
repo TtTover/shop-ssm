@@ -1,6 +1,9 @@
 package com.gec.service;
 
+import com.gec.bean.Orderitem;
 import com.gec.bean.Orders;
+
+import java.util.List;
 
 public interface OrdersService {
     /**
@@ -18,9 +21,15 @@ public interface OrdersService {
     boolean updatePay(String oid);
 
     /**
-     * 通过订单编号查询订单信息
-     * @param oid
+     * 通过订单编号查询出订单信息
      * @return
      */
     Orders findOrderById(String oid);
+
+    /**
+     * 通过用户编号查找该用户所有的订单信息
+     * @param uid
+     * @return
+     */
+    List<Orders> findOrdersByUid(String uid);
 }

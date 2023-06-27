@@ -94,11 +94,20 @@ public class OrderController {
         return orders;
     }
 
+    /**
+     * 创建订单
+     * @param model
+     * @param form
+     * @return
+     */
     @RequestMapping("/creatOrder")
     public String createOrder(Model model,Orders form){
         Orders orders = getOrders();
 
         //编写业务逻辑代码将购物车中的数据添加到数据库中
+        orders.setAddress(form.getAddress());
+        orders.setTelephone(form.getTelephone());
+        orders.setName(form.getName());
         boolean b = ordersService.addOrders(orders);
 
         //添加完毕以后 去到account.jsp这个结算页面
@@ -127,7 +136,7 @@ public class OrderController {
             //编写一个修改订单状态的service业务逻辑代码
             session.removeAttribute("cart");
             ordersService.updatePay(oid);
-            return "order_list";
+            return "redirect:ordersList";
         }else {
             //错误 回去重新输入支付密码
             model.addAttribute("error","支付密码错误");
@@ -138,4 +147,21 @@ public class OrderController {
         }
     }
 
+    @RequestMapping("/ordersList")
+    public String ordersList(Model model){
+        //从session中获取用户信息 获取用户编号uid
+        User user = (User) session.getAttribute("user");
+        if (user==null){
+            //用户的信息为空 没有登陆 让他去登陆
+            return "redirect:login.jsp";
+        }
+        //登陆状态下才能查询对应的用户订单信息
+        String uid = user.getUid();
+        //通过uid去查询用户的所有订单信息
+        List<Orders> ordersByUid = ordersService.findOrdersByUid(uid);
+        //订单数据是放到order_list.jsp页面的orderList
+        model.addAttribute("orderList",ordersByUid);
+        return "order_list";
+
+    }
 }

@@ -29,6 +29,48 @@
         where  oid = #{oid,jdbcType=VARCHAR} 
     </select>
 
+    <resultMap id="OrderResultMap" type="com.gec.bean.Orders">
+        <id property="oid" column="oid" jdbcType="VARCHAR"/>
+        <result property="ordertime" column="ordertime" jdbcType="TIMESTAMP"/>
+        <result property="total" column="total" jdbcType="DOUBLE"/>
+        <result property="state" column="state" jdbcType="INTEGER"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="telephone" column="telephone" jdbcType="VARCHAR"/>
+        <result property="uid" column="uid" jdbcType="VARCHAR"/>
+        <result property="assess" column="assess" jdbcType="VARCHAR"/>
+        <!--一个订单有多个订单明细 在xml文件中使用association来写关联关系-->
+        <association property="orderitems" javaType="com.gec.bean.Orderitem">
+            <id property="itemid" column="itemid" jdbcType="VARCHAR"/>
+            <result property="count" column="count" jdbcType="INTEGER"/>
+            <result property="subtotal" column="subtotal" jdbcType="DOUBLE"/>
+            <result property="pid" column="pid" jdbcType="VARCHAR"/>
+            <result property="oid" column="oid" jdbcType="VARCHAR"/>
+        <!--一个订单明细对应一个商品 关联关系也要写出来-->
+            <association property="product" javaType="com.gec.bean.Product">
+                <id property="pid" column="pid" jdbcType="VARCHAR"/>
+                <result property="pname" column="pname" jdbcType="VARCHAR"/>
+                <result property="marketPrice" column="market_price" jdbcType="DOUBLE"/>
+                <result property="shopPrice" column="shop_price" jdbcType="DOUBLE"/>
+                <result property="pimage" column="pimage" jdbcType="VARCHAR"/>
+                <result property="pdate" column="pdate" jdbcType="DATE"/>
+                <result property="isHot" column="is_hot" jdbcType="INTEGER"/>
+                <result property="pdesc" column="pdesc" jdbcType="VARCHAR"/>
+                <result property="pflag" column="pflag" jdbcType="INTEGER"/>
+                <result property="cid" column="cid" jdbcType="VARCHAR"/>
+            </association>
+        </association>
+    </resultMap>
+
+    <select id="findOrdersByUid" parameterType="string" resultMap="OrderResultMap">
+        select orders.*,orderitem.*,product.*
+        from orders
+                 left join orderitem on orders.oid = orderitem.oid
+                 left join product on orderitem.pid = product.pid
+        where orders.uid=#{value}
+        order by orders.ordertime desc;
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from orders
         where  oid = #{oid,jdbcType=VARCHAR} 

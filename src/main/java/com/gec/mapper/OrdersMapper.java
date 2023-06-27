@@ -1,6 +1,9 @@
 package com.gec.mapper;
 
+import com.gec.bean.Orderitem;
 import com.gec.bean.Orders;
+
+import java.util.List;
 
 /**
 * @author 17740
@@ -22,4 +25,10 @@ public interface OrdersMapper {
 
     int updateByPrimaryKey(Orders record);
 
+    /**
+     * 通过用户编号查询对应的用户订单信息的方法
+     * @param uid
+     * @return
+     */
+    List<Orders> findOrdersByUid(String uid);
 }

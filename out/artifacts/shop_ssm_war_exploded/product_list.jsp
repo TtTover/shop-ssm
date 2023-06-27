@@ -40,7 +40,7 @@ body {
 				<li><a href="home">首页</a></li>
 				<c:forEach items="${categoryList}" var="category">
 				<c:if test="${cid==category.cid}"> 
-			     	<li><a href="ProductListServlet?currentPage=1&cid=${cid}">${category.cname}</a></li>
+			     	<li><a href="productList?currentPage=1&cid=${cid}">${category.cname}</a></li>
 			     </c:if>
 				</c:forEach>
 				
@@ -84,22 +84,22 @@ body {
 		    </c:if>
 		   <c:if test="${empty cid}">
 		    <c:if test="${currentPage!=1}">
-			  <li><a href="ProductListServlet?currentPage=${currentPage-1}" aria-label="Previous"><span
+			  <li><a href="productList?currentPage=${currentPage-1}" aria-label="Previous"><span
 					aria-hidden="true">&laquo;</span></a></li>
 		    </c:if>
 			
 			
 			<c:forEach begin="1" end="${totalPage}" var="pageNum">
 			   <c:if test="${currentPage==pageNum}">
-			      <li class="active"><a href="ProductListServlet?currentPage=${pageNum}">${pageNum }</a></li>
+			      <li class="active"><a href="productList?currentPage=${pageNum}">${pageNum }</a></li>
 			   </c:if>
 			   <c:if test="${currentPage!=pageNum }">
-			      <li><a href="ProductListServlet?currentPage=${pageNum}">${pageNum}</a></li>
+			      <li><a href="productList?currentPage=${pageNum}">${pageNum}</a></li>
 			   </c:if>
 			</c:forEach>
 			
 			<c:if test="${currentPage!=totalPage}">
-			    <li><a href="ProductListServlet?currentPage=${currentPage+1}" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+			    <li><a href="productList?currentPage=${currentPage+1}" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 			         </a>
 			    </li>
 			</c:if>
@@ -107,22 +107,22 @@ body {
 		
 		<c:if test="${!empty cid}">
 		    <c:if test="${currentPage!=1}">
-			  <li><a href="ProductListServlet?currentPage=${currentPage-1}&cid=${cid}" aria-label="Previous"><span
+			  <li><a href="productList?currentPage=${currentPage-1}&cid=${cid}" aria-label="Previous"><span
 					aria-hidden="true">&laquo;</span></a></li>
 		    </c:if>
 			
 			
 			<c:forEach begin="1" end="${totalPage}" var="pageNum">
 			   <c:if test="${currentPage==pageNum}">
-			      <li class="active"><a href="ProductListServlet?currentPage=${pageNum}&cid=${cid}">${pageNum }</a></li>
+			      <li class="active"><a href="productList?currentPage=${pageNum}&cid=${cid}">${pageNum }</a></li>
 			   </c:if>
 			   <c:if test="${currentPage!=pageNum }">
-			      <li><a href="ProductListServlet?currentPage=${pageNum}&cid=${cid}">${pageNum}</a></li>
+			      <li><a href="productList?currentPage=${pageNum}&cid=${cid}">${pageNum}</a></li>
 			   </c:if>
 			</c:forEach>
 			
 			<c:if test="${currentPage!=totalPage}">
-			    <li><a href="ProductListServlet?currentPage=${currentPage+1}&cid=${cid}" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+			    <li><a href="productList?currentPage=${currentPage+1}&cid=${cid}" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 			         </a>
 			    </li>
 			</c:if>

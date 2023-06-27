@@ -7,6 +7,7 @@ import com.gec.mapper.OrderitemMapper;
 import com.gec.mapper.OrdersMapper;
 import com.gec.mapper.ProductMapper;
 import com.gec.service.OrdersService;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +50,8 @@ public class OrdersServiceImpl implements OrdersService {
         Orders orders = ordersMapper.selectByPrimaryKey(oid);
         //将订单状态修改为支付状态
         orders.setState(1);
+        //调用修改语句修改订单状态
+        ordersMapper.updateByPrimaryKey(orders);
         return true;
     }
 
@@ -69,5 +72,10 @@ public class OrdersServiceImpl implements OrdersService {
         //修改一下订单中的订单明细数据
         orders.setOrderitems(orderitems);
         return orders;
+    }
+
+    @Override
+    public List<Orders> findOrdersByUid(String uid){
+        return ordersMapper.findOrdersByUid(uid);
     }
 }
