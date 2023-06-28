@@ -31,7 +31,7 @@
 						是否热门：
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
-						<select name="is_hot">
+						<select name="isHot">
 							<option value="1">是</option>
 							<option value="0">否</option>
 						</select>

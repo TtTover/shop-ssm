@@ -38,4 +38,11 @@ public interface ProductMapper {
     List<Product> findNewProduct();
 
     List<Product> productList();
+
+    /**
+     * 关键字查询、模糊搜索的数据库访问层代码
+     * @param search
+     * @return
+     */
+    List<Product> findProductLikeName(String search);
 }

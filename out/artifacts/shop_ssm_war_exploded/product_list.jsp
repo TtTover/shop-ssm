@@ -39,7 +39,7 @@ body {
 			<ol class="breadcrumb">
 				<li><a href="home">首页</a></li>
 				<c:forEach items="${categoryList}" var="category">
-				<c:if test="${cid==category.cid}"> 
+				<c:if test="${cid==category.cid}"	>
 			     	<li><a href="productList?currentPage=1&cid=${cid}">${category.cname}</a></li>
 			     </c:if>
 				</c:forEach>

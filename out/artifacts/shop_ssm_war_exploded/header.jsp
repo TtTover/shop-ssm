@@ -58,12 +58,12 @@
 				    </c:if>
 				</c:forEach>
 				</ul>
-				<form action="SearchProductServlet" class="navbar-form navbar-right" role="search">
+				<form action="searchProduct" class="navbar-form navbar-right" role="search">
 					<input type="hidden" name="currentPage" value="1"/>
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search" value="${search}" name="search">
+						<input type="text" class="form-control" placeholder="输入关键字进行搜索" value="${search}" name="search">
 					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
+					<button type="submit" class="btn btn-default">搜索</button>
 				</form>
 			</div>
 		</div>

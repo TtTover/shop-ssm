@@ -132,4 +132,8 @@
     <select id="productList" resultMap="BaseResultMap">
         select * from product
     </select>
+
+    <select id="findProductLikeName" parameterType="string" resultMap="BaseResultMap">
+        select * from product where pname like '%${value}' or pdesc like '%${value}'
+    </select>
 </mapper>

@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -124,11 +125,18 @@ public class ProductController {
 
                 System.out.println("文件上传成功");
                 //将图片的路径设置到 产品对象中
-                product.setPimage(finalName);
+                product.setPimage("http://localhost:9090/upload/"+finalName);
             }
         }catch (Exception e){
             e.printStackTrace();
         }
+        //进行商品的添加
+        //设置一个产品编号
+        product.setPid(UUID.randomUUID().toString().replace("-",""));
+        product.setPdate(new Date());
+        product.setPflag(1);
+        //调用将商品写入数据库的方法
+        productService.addProduct(product);
         //添加成功以后去到商品列表页面 需要自己写控制器方法
         return "admin/product/list";
     }
@@ -142,5 +150,14 @@ public class ProductController {
         model.addAttribute("category_list",categoryList);
         //将数据带到添加商品的页面
         return "admin/product/add";
+    }
+
+    @RequestMapping("/searchProduct")
+    public String searchProduct(String search,Model model){
+        List<Product> productList = productService.findProductLikeName(search);
+        //查询出来的商品信息放到productList里面
+        model.addAttribute("productList",productList);
+        //去到展示商品的页面product_list.jsp
+        return "product_list";
     }
 }

@@ -12,6 +12,13 @@ public interface UserService {
     User doLogin(String username,String password);
 
     /**
+     * 用户注册
+     * @param user
+     * @return
+     */
+    boolean doRegister(User user);
+
+    /**
      * 按编号查询用户信息
      * @param uid
      * @return

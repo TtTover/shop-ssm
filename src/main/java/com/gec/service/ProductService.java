@@ -13,7 +13,26 @@ public interface ProductService{
 
     List<Product> findNewProduct();
 
+    /**
+     * 通过产品编号查询产品信息
+     * @param pid
+     * @return
+     */
     Product getById(String pid);
 
     List<Product> productList();
+
+    /**
+     * 添加商品
+     * @param product
+     * @return
+     */
+    boolean addProduct(Product product);
+
+    /**
+     * 模糊搜索、关键字查询
+     * @param search
+     * @return
+     */
+    List<Product> findProductLikeName(String search);
 }

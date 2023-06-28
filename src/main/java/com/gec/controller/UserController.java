@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.UUID;
 
 @Controller
 public class UserController {
@@ -33,5 +34,17 @@ public class UserController {
             //登陆成功后重定向到首页
             return "redirect:home";
         }
+    }
+
+    @RequestMapping("/doRegister")
+    public String doRegister(User user){
+        //进行用户的添加
+        //设置一个用户编号
+        user.setUid(UUID.randomUUID().toString());
+        user.setState(0);
+        //调用将用户写入到数据库的方法
+        userService.doRegister(user);
+        //添加成功后去到登陆页面
+        return "login";
     }
 }

@@ -26,6 +26,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean doRegister(User user) {
+        int insert = userMapper.insert(user);
+        if (insert>0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public User findUserById(String uid) {
         return userMapper.selectByPrimaryKey(uid);
     }

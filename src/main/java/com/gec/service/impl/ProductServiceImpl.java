@@ -37,4 +37,18 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> productList() {return productMapper.productList();}
+
+    @Override
+    public boolean addProduct(Product product) {
+        int insert = productMapper.insert(product);
+        if (insert>0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public List<Product> findProductLikeName(String search) {
+        return productMapper.findProductLikeName(search);
+    }
 }
