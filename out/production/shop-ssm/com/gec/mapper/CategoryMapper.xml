@@ -55,4 +55,8 @@
             cname =  #{cname,jdbcType=VARCHAR}
         where   cid = #{cid,jdbcType=VARCHAR} 
     </update>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        select * from category
+    </select>
 </mapper>
