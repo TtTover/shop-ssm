@@ -14,6 +14,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
+    /**
+     * 接下来写 实现用户登陆接口的实现类代码
+     * @param username
+     * @param password
+     * @return
+     */
     @Override
     public User doLogin(String username, String password) {
         //封装用户的个人信息

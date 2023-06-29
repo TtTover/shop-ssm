@@ -110,8 +110,8 @@
         update product
         set 
             pname =  #{pname,jdbcType=VARCHAR},
-            marketPrice =  #{marketPrice,jdbcType=DOUBLE},
-            shopPrice =  #{shopPrice,jdbcType=DOUBLE},
+            market_price =  #{marketPrice,jdbcType=DOUBLE},
+            shop_price =  #{shopPrice,jdbcType=DOUBLE},
             pimage =  #{pimage,jdbcType=VARCHAR},
             pdate =  #{pdate,jdbcType=DATE},
             is_hot =  #{isHot,jdbcType=INTEGER},
@@ -138,6 +138,6 @@
     </select>
 
     <select id="findProductLikeName" parameterType="string" resultMap="BaseResultMap">
-        select * from product where pname like '%${value}%' or pdesc like '%${value}%'
+        select * from product where pname like '%${value}%' or pdesc like '%{value}$%'
     </select>
 </mapper>

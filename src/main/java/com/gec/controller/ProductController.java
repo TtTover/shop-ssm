@@ -181,10 +181,10 @@ public class ProductController {
     }
 
     @RequestMapping("/productListToAdmin")
-    public ModelAndView productListToAdmin(String cid){
+    public ModelAndView productListToAdmin(Product product){
         ModelAndView modelAndView = new ModelAndView();
 
-        List<Product> productList = productService.getByCid(cid);
+        List<Product> productList = productService.getAll();
         modelAndView.addObject("productList",productList);
 
         modelAndView.setViewName("admin/product/list");
@@ -197,31 +197,38 @@ public class ProductController {
         List<Category> categoryList = categoryService.getAll();
         //将这个数据加入到 添加商品页面
         model.addAttribute("category_list",categoryList);
+
+        List<Product> productList = productService.getAll();
+        model.addAttribute(productList);
+
         //将数据带到添加商品的页面
         return "admin/product/add";
     }
 
-    @RequestMapping("/editProductToAdmin")
-    public ModelAndView editProductToAdmin(String pid){
-        ModelAndView modelAndView = new ModelAndView();
+@RequestMapping("/toEditProduct")
+public String toEditProduct(Product product,Model model){
+        //查询商品分类
+    List<Category> categoryList = categoryService.getAll();
+    //将这个数据加入到 编辑商品页面
+    model.addAttribute("category_list",categoryList);
 
-        Product product = productService.getById(pid);
-        modelAndView.addObject("product",product);
+    Product byId = productService.getById(product.getPid());
+    model.addAttribute("product",byId);
 
-        List<Category> categoryList = categoryService.getAll();
-        modelAndView.addObject("category_list",categoryList);
+    return "admin/product/edit";
+}
 
-        modelAndView.setViewName("admin/product/edit");
+    @RequestMapping("/editProduct")
+    public String editProduct(Product product,Model model){
+        Product product1 = (Product) session.getAttribute("product");
+        session.setAttribute("product",product);
+        productService.updateProduct(product);
 
-        return modelAndView;
+        List<Product> productList = productService.getAll();
+        model.addAttribute(productList);
+
+        return "admin/product/list";
     }
-//
-//    @RequestMapping("/updateProduct")
-//    public String updateProduct(){
-//        //修改商品信息 数据在session中
-//        Product product = (Product) session.getAttribute("admin/product/list");
-//        productService.updateByPrimaryKey(product);
-//        session.setAttribute("admin/product/list",product);
-//        return "admin/product/list";
-//    }
+
+
 }

@@ -11,6 +11,10 @@ import java.util.List;
 public interface ProductService{
     List<Product> findHotProduct();
 
+    /**
+     * 查询最新商品信息
+     * @return
+     */
     List<Product> findNewProduct();
 
     /**
@@ -30,6 +34,13 @@ public interface ProductService{
      * @return
      */
     boolean addProduct(Product product);
+
+    /**
+     * 更新商品信息
+     * @param product
+     * @return
+     */
+    boolean updateProduct(Product product);
 
     /**
      * 删除商品

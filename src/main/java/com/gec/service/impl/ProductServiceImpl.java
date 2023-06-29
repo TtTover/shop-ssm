@@ -53,6 +53,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public boolean updateProduct(Product product) {
+        int update = productMapper.updateByPrimaryKeySelective(product);
+        if (update>0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public boolean updateByPrimaryKey(Product product) {
         int update = productMapper.updateByPrimaryKey(product);
         if (update>0){

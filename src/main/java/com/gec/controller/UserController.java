@@ -18,6 +18,13 @@ public class UserController {
     @Autowired
     HttpSession session;
 
+    /**
+     * 最后写用户登陆的控制类代码 进行用户登陆
+     * @param model
+     * @param username
+     * @param password
+     * @return
+     */
     @RequestMapping("/login")
     public String login(Model model,String username, String password){
         //调用业务逻辑代码，判断账号密码是否正确
@@ -69,8 +76,6 @@ public class UserController {
         user1.setAddress(user.getAddress());
         userService.updateByPrimaryKey(user1);
         session.setAttribute("user",user1);
-        System.out.println(session);
-        System.out.println(user1);
         return "redirect:home";
     }
 }

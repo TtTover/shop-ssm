@@ -69,7 +69,7 @@
 									 <c:if test="${product.isHot==1}">是</c:if>
 							    </td>
 								<td align="center" style="HEIGHT: 20px"><a
-									href="${ pageContext.request.contextPath }/editProductToAdmin?pid=${product.pid}&admin=admin">
+									href="${ pageContext.request.contextPath }/toEditProduct?pid=${product.pid}&admin=admin">
 										<img
 										src="${pageContext.request.contextPath}/images/i_edit1.jpg"
 										border="0" style="CURSOR: hand">
