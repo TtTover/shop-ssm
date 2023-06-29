@@ -38,4 +38,13 @@ public class UserServiceImpl implements UserService {
     public User findUserById(String uid) {
         return userMapper.selectByPrimaryKey(uid);
     }
+
+    @Override
+    public boolean updateByPrimaryKey(User user) {
+        int update = userMapper.updateByPrimaryKeySelective(user);
+        if (update>0){
+            return true;
+        }
+        return false;
+    }
 }

@@ -39,7 +39,7 @@ TH {
 		</table>
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
-				<td height="30" valign="bottom" background="${pageContext.request.contextPath}/images/mis_01.jpg">
+				<td height="30" valign="bottom" background="${pageContext.request.contextPath}/images/mis_01.top_01.jpg">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
 							<td width="85%" align="left">

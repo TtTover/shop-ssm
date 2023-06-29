@@ -9,7 +9,7 @@
 	
 	<body>
 		<!--  -->
-		<form id="userAction_save_do" name="Form1" action="${pageContext.request.contextPath}/EditProductServlet" method="get" enctype="multipart/form-data">
+		<form id="userAction_save_do" name="Form1" action="${pageContext.request.contextPath}/editProductToAdmin" method="get" enctype="multipart/form-data">
 			<input type="hidden" name="pid" value="${product.pid}"/>
 			<table cellSpacing="1" cellPadding="5" width="100%" align="center" bgColor="#eeeeee" style="border: 1px solid #8ba7e3" border="0">
 				<tr>
@@ -33,8 +33,8 @@
 					<td class="ta_01" bgColor="#ffffff">
 						
 						<select name="is_hot">
-							<option value="1" <c:if test="${product.is_hot==1}">selected="selected"</c:if>>是</option>
-							<option value="0" <c:if test="${product.is_hot==0}">selected="selected"</c:if>>否</option>
+							<option value="1" <c:if test="${product.isHot==1}">selected="selected"</c:if>>是</option>
+							<option value="0" <c:if test="${product.isHot==0}">selected="selected"</c:if>>否</option>
 							
 						</select>
 					</td>
@@ -44,13 +44,13 @@
 						市场价格：
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
-						<input type="text" name="market_price" value="${product.market_price}" id="userAction_save_do_logonName" class="bg"/>
+						<input type="text" name="market_price" value="${product.marketPrice}" id="userAction_save_do_logonName" class="bg"/>
 					</td>
 					<td width="18%" align="center" bgColor="#f5fafe" class="ta_01">
 						商城价格：
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
-						<input type="text" name="shop_price" value="${product.shop_price}" id="userAction_save_do_logonName" class="bg"/>
+						<input type="text" name="shop_price" value="${product.shopPrice}" id="userAction_save_do_logonName" class="bg"/>
 					</td>
 				</tr>
 				<tr>

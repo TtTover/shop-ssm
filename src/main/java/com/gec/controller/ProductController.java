@@ -1,7 +1,10 @@
 package com.gec.controller;
 
+import com.gec.bean.Cart;
+import com.gec.bean.CartItem;
 import com.gec.bean.Category;
 import com.gec.bean.Product;
+import com.gec.mapper.ProductMapper;
 import com.gec.service.CategoryService;
 import com.gec.service.ProductService;
 import org.apache.commons.io.FilenameUtils;
@@ -13,13 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
 public class ProductController {
+
+    @Autowired
+    HttpSession session;
+
     @Autowired
     ProductService productService;
 
@@ -40,25 +49,10 @@ public class ProductController {
         //将数据存放到newProductList中
         modelAndView.addObject("newProductList",newProduct);
 
+        List<Category> categoryList = categoryService.getAll();
+        modelAndView.addObject("categoryList",categoryList);
+
         modelAndView.setViewName("index");
-        return modelAndView;
-    }
-
-    @RequestMapping("/header")
-    public ModelAndView header(){
-        ModelAndView modelAndView = new ModelAndView();
-
-        //查询获取热门商品的数据
-        List<Product> hotProduct = productService.findHotProduct();
-        //将数据存放到hotProductList中
-        modelAndView.addObject("hotProductList",hotProduct);
-
-        //查询获取最新商品的数据
-        List<Product> newProduct = productService.findNewProduct();
-        //将数据存放到newProductList中
-        modelAndView.addObject("newProductList",newProduct);
-
-        modelAndView.setViewName("header");
         return modelAndView;
     }
 
@@ -71,11 +65,30 @@ public class ProductController {
         return modelAndView;
     }
 
-    @RequestMapping("/productList")
-    public ModelAndView productList(){
+    @RequestMapping("/getByCid")
+    public ModelAndView getByCid(Category category){
         ModelAndView modelAndView = new ModelAndView();
-        List<Product> productList = productService.productList();
+
+        List<Product> productList = productService.getByCid(category.getCid());
         modelAndView.addObject("productList",productList);
+
+        List<Category> categoryList = categoryService.getAll();
+        modelAndView.addObject("categoryList",categoryList);
+
+        modelAndView.setViewName("product_list");
+        return modelAndView;
+    }
+
+    @RequestMapping("/getAll")
+    public ModelAndView getAll(){
+        ModelAndView modelAndView = new ModelAndView();
+
+        List<Product> productList = productService.getAll();
+        modelAndView.addObject("productList",productList);
+
+        List<Category> categoryList = categoryService.getAll();
+        modelAndView.addObject("categoryList",categoryList);
+
         modelAndView.setViewName("product_list");
         return modelAndView;
     }
@@ -160,4 +173,55 @@ public class ProductController {
         //去到展示商品的页面product_list.jsp
         return "product_list";
     }
+
+    @RequestMapping("/deleteProduct")
+    public String deleteProduct(Product product){
+        productService.deleteProduct(product);
+        return "admin/product/list";
+    }
+
+    @RequestMapping("/productListToAdmin")
+    public ModelAndView productListToAdmin(String cid){
+        ModelAndView modelAndView = new ModelAndView();
+
+        List<Product> productList = productService.getByCid(cid);
+        modelAndView.addObject("productList",productList);
+
+        modelAndView.setViewName("admin/product/list");
+        return modelAndView;
+    }
+
+    @RequestMapping("/addProductToAdmin")
+    public String addProductToAdmin(Model model){
+        //查询商品分类
+        List<Category> categoryList = categoryService.getAll();
+        //将这个数据加入到 添加商品页面
+        model.addAttribute("category_list",categoryList);
+        //将数据带到添加商品的页面
+        return "admin/product/add";
+    }
+
+    @RequestMapping("/editProductToAdmin")
+    public ModelAndView editProductToAdmin(String pid){
+        ModelAndView modelAndView = new ModelAndView();
+
+        Product product = productService.getById(pid);
+        modelAndView.addObject("product",product);
+
+        List<Category> categoryList = categoryService.getAll();
+        modelAndView.addObject("category_list",categoryList);
+
+        modelAndView.setViewName("admin/product/edit");
+
+        return modelAndView;
+    }
+//
+//    @RequestMapping("/updateProduct")
+//    public String updateProduct(){
+//        //修改商品信息 数据在session中
+//        Product product = (Product) session.getAttribute("admin/product/list");
+//        productService.updateByPrimaryKey(product);
+//        session.setAttribute("admin/product/list",product);
+//        return "admin/product/list";
+//    }
 }

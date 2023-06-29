@@ -43,22 +43,22 @@ body {
 			     	<li><a href="productList?currentPage=1&cid=${cid}">${category.cname}</a></li>
 			     </c:if>
 				</c:forEach>
-				
+
 			</ol>
 		</div>
-		
+
 		<%--
 		     el表达式：${}，实例：${productList}
-		   ${productList} 等价于 <%=request.getAttribute("productList")%> 
-		   
+		   ${productList} 等价于 <%=request.getAttribute("productList")%>
+
 		   <c:forEach items="${productList}" var="product"></c:forEach>
 		   相当于java里面的 for(Product product:productList){}
-		   
+
 		   <c:forEach begin="1" end="${totalPage}" var="i"></c:forEach>
 		 相当于Java里面的  for(int i=1;i<=totalPage;i++){}
-		   
+
 		--%>
-		
+
   <c:forEach items="${productList}" var="product">
 		<div class="col-md-2" style="height:250px;text-align:center">
 			<a href="getById?pid=${product.pid}"> <img src="${product.pimage}"
@@ -87,8 +87,8 @@ body {
 			  <li><a href="productList?currentPage=${currentPage-1}" aria-label="Previous"><span
 					aria-hidden="true">&laquo;</span></a></li>
 		    </c:if>
-			
-			
+
+
 			<c:forEach begin="1" end="${totalPage}" var="pageNum">
 			   <c:if test="${currentPage==pageNum}">
 			      <li class="active"><a href="productList?currentPage=${pageNum}">${pageNum }</a></li>
@@ -97,21 +97,21 @@ body {
 			      <li><a href="productList?currentPage=${pageNum}">${pageNum}</a></li>
 			   </c:if>
 			</c:forEach>
-			
+
 			<c:if test="${currentPage!=totalPage}">
 			    <li><a href="productList?currentPage=${currentPage+1}" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 			         </a>
 			    </li>
 			</c:if>
 		</c:if>
-		
+
 		<c:if test="${!empty cid}">
 		    <c:if test="${currentPage!=1}">
 			  <li><a href="productList?currentPage=${currentPage-1}&cid=${cid}" aria-label="Previous"><span
 					aria-hidden="true">&laquo;</span></a></li>
 		    </c:if>
-			
-			
+
+
 			<c:forEach begin="1" end="${totalPage}" var="pageNum">
 			   <c:if test="${currentPage==pageNum}">
 			      <li class="active"><a href="productList?currentPage=${pageNum}&cid=${cid}">${pageNum }</a></li>
@@ -120,7 +120,7 @@ body {
 			      <li><a href="productList?currentPage=${pageNum}&cid=${cid}">${pageNum}</a></li>
 			   </c:if>
 			</c:forEach>
-			
+
 			<c:if test="${currentPage!=totalPage}">
 			    <li><a href="productList?currentPage=${currentPage+1}&cid=${cid}" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 			         </a>
@@ -149,11 +149,11 @@ body {
 		<div style="overflow: hidden;">
 
 			<ul style="list-style: none;">
-			 
+
 				<li
 					style="width: 150px; height: 216px; float: left; margin: 0 8px 0 0; padding: 0 18px 15px; text-align: center;"><img
 					src="products/1/cs10001.jpg" width="130px" height="130px" /></li>
-			  
+
 			</ul>
 
 		</div>

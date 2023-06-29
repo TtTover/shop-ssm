@@ -10,4 +10,6 @@ public interface CategoryService {
      * @return
      */
     List<Category> getAll();
+
+    Category getByCid(String cid);
 }

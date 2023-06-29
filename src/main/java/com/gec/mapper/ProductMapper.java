@@ -37,7 +37,9 @@ public interface ProductMapper {
      */
     List<Product> findNewProduct();
 
-    List<Product> productList();
+    List<Product> getByCid(String cid);
+
+    List<Product> getAll();
 
     /**
      * 关键字查询、模糊搜索的数据库访问层代码

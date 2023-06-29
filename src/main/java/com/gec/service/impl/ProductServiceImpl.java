@@ -36,12 +36,35 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> productList() {return productMapper.productList();}
+    public List<Product> getByCid(String cid) {return productMapper.getByCid(cid);}
+
+    @Override
+    public List<Product> getAll() {
+        return productMapper.getAll();
+    }
 
     @Override
     public boolean addProduct(Product product) {
         int insert = productMapper.insert(product);
         if (insert>0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateByPrimaryKey(Product product) {
+        int update = productMapper.updateByPrimaryKey(product);
+        if (update>0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteProduct(Product product) {
+        int delete = productMapper.deleteByPrimaryKey(product.getPid());
+        if (delete>0){
             return true;
         }
         return false;

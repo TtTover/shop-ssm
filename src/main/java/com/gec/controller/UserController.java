@@ -47,4 +47,30 @@ public class UserController {
         //添加成功后去到登陆页面
         return "login";
     }
+
+    @RequestMapping("/logout")
+    public String logout(){
+        session.removeAttribute("user");
+        return "login";
+    }
+
+    @RequestMapping("/updateUser")
+    public String updateUser(User user){
+        User user2 = (User) session.getAttribute("user");
+        User user1 = new User();
+        user1.setUid(user.getUid());
+        user1.setUsername(user2.getUsername());
+        user1.setPassword(user.getPassword());
+        user1.setName(user.getName());
+        user1.setEmail(user.getEmail());
+        user1.setTelephone(user.getTelephone());
+        user1.setSex(user.getSex());
+        user1.setBirthday(user.getBirthday());
+        user1.setAddress(user.getAddress());
+        userService.updateByPrimaryKey(user1);
+        session.setAttribute("user",user1);
+        System.out.println(session);
+        System.out.println(user1);
+        return "redirect:home";
+    }
 }

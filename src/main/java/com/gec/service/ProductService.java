@@ -20,7 +20,9 @@ public interface ProductService{
      */
     Product getById(String pid);
 
-    List<Product> productList();
+    List<Product> getByCid(String cid);
+
+    List<Product> getAll();
 
     /**
      * 添加商品
@@ -30,9 +32,22 @@ public interface ProductService{
     boolean addProduct(Product product);
 
     /**
+     * 删除商品
+     * @param product
+     * @return
+     */
+    boolean deleteProduct(Product product);
+
+    /**
      * 模糊搜索、关键字查询
      * @param search
      * @return
      */
     List<Product> findProductLikeName(String search);
+
+    /**
+     * 更新用户信息
+     * @return
+     */
+    boolean updateByPrimaryKey(Product product);
 }

@@ -24,4 +24,6 @@ public interface UserService {
      * @return
      */
     User findUserById(String uid);
+
+    boolean updateByPrimaryKey(User user);
 }

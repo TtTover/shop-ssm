@@ -12,7 +12,7 @@
 	src="${pageContext.request.contextPath}/js/public.js"></script>
 <script type="text/javascript">
 			function addProduct(){
-				window.location.href = "${pageContext.request.contextPath}/admin/product/add.jsp";
+				window.location.href = "${pageContext.request.contextPath}/addProductToAdmin";
 			}
 		</script>
 </HEAD>
@@ -62,21 +62,21 @@
 								<td style="CURSOR: hand; HEIGHT: 20px" align="center"
 									width="17%">${product.pname}</td>
 								<td style="CURSOR: hand; HEIGHT: 20px" align="center"
-									width="17%">${product.shop_price}</td>
+									width="17%">${product.shopPrice}</td>
 								<td style="CURSOR: hand; HEIGHT: 20px" align="center"
 									width="17%">
-									 <c:if test="${product.is_hot==0}">否</c:if>
-									 <c:if test="${product.is_hot==1}">是</c:if>
+									 <c:if test="${product.isHot==0}">否</c:if>
+									 <c:if test="${product.isHot==1}">是</c:if>
 							    </td>
 								<td align="center" style="HEIGHT: 20px"><a
-									href="${ pageContext.request.contextPath }/ProductInfoServlet?pid=${product.pid}&admin=admin">
+									href="${ pageContext.request.contextPath }/editProductToAdmin?pid=${product.pid}&admin=admin">
 										<img
-										src="${pageContext.request.contextPath}/images/i_edit.gif"
+										src="${pageContext.request.contextPath}/images/i_edit1.jpg"
 										border="0" style="CURSOR: hand">
 								</a></td>
 
-								<td align="center" style="HEIGHT: 20px"><a href="DeleteProductServlet?pid=${product.pid}"> <img
-										src="${pageContext.request.contextPath}/images/i_edit.gif"
+								<td align="center" style="HEIGHT: 20px"><a href="deleteProduct?pid=${product.pid}"> <img
+										src="${pageContext.request.contextPath}/images/i_edit2.jpg"
 										border="0" style="CURSOR: hand">
 								  </a></td>
 							  </tr>

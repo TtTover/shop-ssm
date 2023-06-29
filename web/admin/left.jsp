@@ -27,8 +27,9 @@
 		d.add('0102','01','分类管理','','','mainFrame');
 		d.add('010201','0102','分类管理','${pageContext.request.contextPath}/CategoryListServlet','','mainFrame');
 		d.add('0104','01','商品管理');
-		d.add('010401','0104','商品管理','${pageContext.request.contextPath}/ProductListServlet?admin=admin&currentPage=1','','mainFrame');
-		d.add('0106','01','订单管理');
+		d.add('010401','0104','商品添加','${pageContext.request.contextPath}/addProductToAdmin?admin=admin&currentPage=1','','mainFrame');
+        d.add('010403','0104','商品列表','${pageContext.request.contextPath}/productListToAdmin?admin=admin&currentPage=1','','mainFrame');
+        d.add('0106','01','订单管理');
 		d.add('010601','0106','订单管理','${pageContext.request.contextPath}/AllOrderListServlet?currentPage=1','','mainFrame');
 		
 		document.write(d);
