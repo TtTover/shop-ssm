@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     /**
-     * 接下来写 实现用户登陆接口的实现类代码
+     * 实现用户登陆接口的实现类代码
      * @param username
      * @param password
      * @return

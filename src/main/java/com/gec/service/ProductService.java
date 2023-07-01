@@ -26,6 +26,10 @@ public interface ProductService{
 
     List<Product> getByCid(String cid);
 
+    /**
+     * 查询全部商品
+     * @return
+     */
     List<Product> getAll();
 
     /**

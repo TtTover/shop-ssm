@@ -49,10 +49,10 @@ public class UserController {
         //设置一个用户编号
         user.setUid(UUID.randomUUID().toString());
         user.setState(0);
-        //调用将用户写入到数据库的方法
+        //调用 将用户写入到数据库 的方法
         userService.doRegister(user);
         //添加成功后去到登陆页面
-        return "login";
+        return "redirect:home";
     }
 
     @RequestMapping("/logout")

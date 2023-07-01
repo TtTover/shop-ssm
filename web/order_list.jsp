@@ -65,7 +65,7 @@ body {
 						  <td>${order.ordertime}</td>
 						  <td>操作</td>
 						  <td>
-						    <a href="ManageOrderServlet?state=${order.state}&oid=${order.oid}">
+						    <a href="toPay?state=${order.state}&oid=${order.oid}">
 						      <c:if test="${order.state==0}">去付款</c:if>
 						      <c:if test="${order.state==1}">催单</c:if>
 						      <c:if test="${order.state==2}">确定收货</c:if>

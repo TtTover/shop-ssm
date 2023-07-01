@@ -79,6 +79,10 @@ public class ProductController {
         return modelAndView;
     }
 
+    /**
+     * 查询全部商品
+     * @return
+     */
     @RequestMapping("/getAll")
     public ModelAndView getAll(){
         ModelAndView modelAndView = new ModelAndView();
@@ -165,6 +169,12 @@ public class ProductController {
         return "admin/product/add";
     }
 
+    /**
+     * 模糊搜索
+     * @param search
+     * @param model
+     * @return
+     */
     @RequestMapping("/searchProduct")
     public String searchProduct(String search,Model model){
         List<Product> productList = productService.findProductLikeName(search);
@@ -175,8 +185,13 @@ public class ProductController {
     }
 
     @RequestMapping("/deleteProduct")
-    public String deleteProduct(Product product){
+    public String deleteProduct(Product product,Model model){
         productService.deleteProduct(product);
+
+        List<Product> productList = productService.getAll();
+        model.addAttribute(productList);
+
+
         return "admin/product/list";
     }
 
@@ -220,7 +235,6 @@ public String toEditProduct(Product product,Model model){
 
     @RequestMapping("/editProduct")
     public String editProduct(Product product,Model model){
-        Product product1 = (Product) session.getAttribute("product");
         session.setAttribute("product",product);
         productService.updateProduct(product);
 

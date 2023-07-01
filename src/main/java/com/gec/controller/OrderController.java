@@ -165,5 +165,18 @@ public class OrderController {
 
     }
 
-
+    @RequestMapping("/toPay")
+    public String toAccount(String oid,Model model){
+        //确保用户为登陆状态
+        User user = (User) session.getAttribute("user");
+        if (user==null){
+            return "redirect:login.jsp";
+        }
+        //错误 回去重新输入支付密码
+        model.addAttribute("error","支付密码错误");
+        //还需要将订单的详细信息查询出来
+        Orders order = ordersService.findOrderById(oid);
+        model.addAttribute("order",order);
+        return "account";
+    }
 }
